@@ -23,14 +23,14 @@ export class MqttService {
             this.client = mqtt.connect(brokerUrl);
 
             this.client.on('connect', () => {
-                console.log('✅ Connected to MQTT broker');
+                console.log('Connected to MQTT broker');
 
                 // Subscribe to telemetry topics
                 this.client?.subscribe('solar/+/data', (err) => {
                     if (err) {
                         console.error('Failed to subscribe to telemetry topic:', err);
                     } else {
-                        console.log('📡 Subscribed to solar/+/data');
+                        console.log('Subscribed to solar/+/data');
                     }
                 });
 
@@ -39,7 +39,7 @@ export class MqttService {
                     if (err) {
                         console.error('Failed to subscribe to status topic:', err);
                     } else {
-                        console.log('📡 Subscribed to solar/+/status');
+                        console.log('Subscribed to solar/+/status');
                     }
                 });
             });

@@ -74,8 +74,8 @@ const mqttService = new MqttService(io);
 const PORT = process.env.PORT || 3000;
 
 httpServer.listen(PORT, () => {
-    console.log(`🚀 Solar Backend running on port ${PORT}`);
-    console.log(`📡 WebSocket server ready`);
+    console.log(`Solar Backend running on port ${PORT}`);
+    console.log(`WebSocket server ready`);
 });
 
 // Graceful shutdown
