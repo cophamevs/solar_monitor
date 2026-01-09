@@ -1,42 +1,14 @@
-# Build stage
-FROM node:20-alpine AS builder
+# Production-only Dockerfile (no build stage)
+# For low-RAM devices like Orange Pi (1GB)
+# Pre-requisite: Run "npm run build" locally first to create dist/
 
-WORKDIR /app
+FROM nginx:alpine
 
-# Copy package files
-COPY package*.json ./
+# Copy pre-built frontend assets
+COPY dist /usr/share/nginx/html
 
-# Install dependencies
-RUN npm ci
-
-# Copy source code
-COPY . .
-
-# Build for production
-RUN npm run build
-
-# Production stage - nginx
-FROM nginx:alpine AS production
-
-# Copy built assets
-COPY --from=builder /app/dist /usr/share/nginx/html
-
-# Copy nginx config for SPA routing
-RUN echo 'server { \
-    listen 80; \
-    root /usr/share/nginx/html; \
-    index index.html; \
-    location / { \
-    try_files $uri $uri/ /index.html; \
-    } \
-    location /api { \
-    proxy_pass http://backend:3000; \
-    proxy_http_version 1.1; \
-    proxy_set_header Upgrade $http_upgrade; \
-    proxy_set_header Connection "upgrade"; \
-    proxy_set_header Host $host; \
-    } \
-    }' > /etc/nginx/conf.d/default.conf
+# Copy nginx config
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 
