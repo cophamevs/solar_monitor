@@ -1,0 +1,25 @@
+# docker-compose.build.yml
+# Use this file to build and push images to GitHub Container Registry
+# Usage: docker compose -f docker-compose.build.yml build
+#        docker compose -f docker-compose.build.yml push
+
+version: '3.3'
+
+services:
+  backend:
+    image: ghcr.io/cophamevs/solar_monitor/backend:latest
+    build:
+      context: ./solar-backend
+      dockerfile: Dockerfile
+      platforms:
+        - linux/arm64
+        - linux/amd64
+
+  frontend:
+    image: ghcr.io/cophamevs/solar_monitor/frontend:latest
+    build:
+      context: ./solar-dashboard
+      dockerfile: Dockerfile
+      platforms:
+        - linux/arm64
+        - linux/amd64

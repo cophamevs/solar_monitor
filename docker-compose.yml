@@ -11,7 +11,6 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD:-solarmonitor2024}
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./init-db:/docker-entrypoint-initdb.d
     ports:
       - "5432:5432"
     healthcheck:
@@ -34,26 +33,9 @@ services:
       - "9001:9001"
     restart: unless-stopped
 
-  # PgAdmin (optional, for development)
-  pgadmin:
-    image: dpage/pgadmin4:latest
-    container_name: solar_pgadmin
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@solar.local
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-admin123}
-    ports:
-      - "5050:80"
-    depends_on:
-      - postgres
-    restart: unless-stopped
-    profiles:
-      - dev
-
-  # Backend API
+  # Backend API (pre-built image for ARM64)
   backend:
-    build:
-      context: ./solar-backend
-      dockerfile: Dockerfile
+    image: ghcr.io/cophamevs/solar_monitor/backend:latest
     container_name: solar_backend
     environment:
       NODE_ENV: production
@@ -70,11 +52,9 @@ services:
         condition: service_started
     restart: unless-stopped
 
-  # Frontend (nginx serving built React app)
+  # Frontend (pre-built image for ARM64)
   frontend:
-    build:
-      context: ./solar-dashboard
-      dockerfile: Dockerfile
+    image: ghcr.io/cophamevs/solar_monitor/frontend:latest
     container_name: solar_frontend
     ports:
       - "80:80"
