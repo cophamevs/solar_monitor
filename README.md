@@ -25,51 +25,32 @@ A complete IoT platform for monitoring and managing distributed solar energy sys
 
 ---
 
-## 🚀 Quick Start (Docker)
+## 🚀 Quick Start (Docker) - Just 2 Commands!
 
 ### Prerequisites
 
-- Docker & Docker Compose
+- Docker & Docker Compose v2+
 - Git
 
-### 1. Clone the repository
+### Deploy
 
 ```bash
+# 1. Clone
 git clone https://github.com/cophamevs/solar_monitor.git
 cd solar_monitor
+
+# 2. Run (database auto-initializes!)
+docker compose up -d
 ```
 
-### 2. Configure environment
+**That's it!** Wait ~30 seconds for initialization, then access:
 
-```bash
-# Copy example and edit with your secure values
-cp .env.example .env
+| Service | URL | Credentials |
+|---------|-----|-------------|
+| **Dashboard** | http://localhost | `admin` / `admin123` |
+| **API** | http://localhost:3000/health | - |
 
-# Generate secure secrets (Linux/macOS)
-openssl rand -base64 32  # Use for JWT_SECRET
-openssl rand -base64 16 | tr -dc 'a-zA-Z0-9' | head -c 20  # Use for DB_PASSWORD
-```
-
-Edit `.env` file:
-```env
-DB_PASSWORD=<your-generated-password>
-JWT_SECRET=<your-generated-secret>
-PGADMIN_PASSWORD=<your-admin-password>
-```
-
-### 3. Start all services
-
-```bash
-docker-compose up -d --build
-```
-
-### 4. Access the application
-
-| Service | URL |
-|---------|-----|
-| **Dashboard** | http://localhost |
-| **API** | http://localhost:3000 |
-| **PgAdmin** (dev) | http://localhost:5050 |
+> 💡 **For production:** Create `.env` file with secure passwords. See [.env.example](.env.example)
 
 ---
 
