@@ -13,7 +13,7 @@ export const authService = {
     async login(username: string, password: string): Promise<LoginResponse> {
         const response = await apiClient.post<LoginResponse>('/auth/login', { username, password });
         if (response.data.token) {
-            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('auth_token', response.data.token);
         }
         return response.data;
     },
@@ -24,6 +24,6 @@ export const authService = {
     },
 
     logout() {
-        localStorage.removeItem('token');
+        localStorage.removeItem('auth_token');
     }
 };

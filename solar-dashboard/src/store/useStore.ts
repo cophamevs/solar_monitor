@@ -33,7 +33,7 @@ export const useStore = create<AppState>((set) => ({
     },
     setSocketStatus: (socketStatus) => set({ socketStatus }),
     logout: () => {
-        localStorage.removeItem('token');
+        localStorage.removeItem('auth_token');
         set({ user: null, isAuthenticated: false });
     }
 }));

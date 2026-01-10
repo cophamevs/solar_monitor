@@ -1,6 +1,7 @@
 import React from 'react';
 import { AppShell } from "./components/layout/AppShell";
 import { SystemOverview } from "./pages/SystemOverview";
+import { api } from "./api/client";
 import { PlantOverview } from "./pages/PlantOverview";
 import { DeviceList } from "./pages/DeviceList";
 import { DeviceDetail } from "./pages/DeviceDetail";
@@ -15,7 +16,7 @@ function App() {
   const [selectedDeviceId, setSelectedDeviceId] = React.useState<string | null>(null);
   const [selectedSiteId, setSelectedSiteId] = React.useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = React.useState(() => {
-    return !!localStorage.getItem("token");
+    return !!localStorage.getItem("auth_token");
   });
 
   const handleSelectDevice = (deviceId: string) => {
@@ -39,10 +40,31 @@ function App() {
     setIsAuthenticated(true);
   };
 
+
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("auth_token");
     setIsAuthenticated(false);
   };
+
+  // Validate session on mount
+  React.useEffect(() => {
+    const checkSession = async () => {
+      const token = localStorage.getItem("auth_token");
+      if (!token) return;
+
+      try {
+        await api.getMe();
+      } catch (error) {
+        console.error("Session invalid", error);
+        handleLogout();
+      }
+    };
+
+    if (isAuthenticated) {
+      checkSession();
+    }
+  }, [isAuthenticated]);
+
 
   const renderContent = () => {
     // If a device is selected, show device detail
