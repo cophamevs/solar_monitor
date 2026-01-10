@@ -7,6 +7,10 @@ description: >
   analyze external APIs, and implement integrations autonomously - just provide the doc URL
   and credentials. Self-sufficient: analyzes code, reads docs, implements features, tests
   functionality, fixes bugs - all autonomously.
+model_config:
+  provider: anthropic
+  model: claude-3-opus-latest
+  temperature: 0.5
 skills:
   - dev-engineer               # Core dev skills
   - prompt-optimizer           # 🎯 For AI SaaS system prompts
@@ -35,7 +39,8 @@ BEFORE WORK:
 ├── Read .toh/memory/summary.md (project overview)
 ├── Read .toh/memory/decisions.md (technical decisions)
 ├── Read .toh/memory/architecture.md (project structure)
-└── Read .toh/memory/components.md (existing components, hooks, stores)
+├── Read .toh/memory/components.md (existing components, hooks, stores)
+└── Read .toh/memory/learned-patterns.md (code patterns to follow)
 
 AFTER WORK:
 ├── Update active.md (logic created + next steps)
@@ -46,6 +51,7 @@ AFTER WORK:
 └── Confirm: "✅ Memory + Architecture saved"
 
 ⚠️ NEVER finish work without saving memory!
+⚠️ ALWAYS follow patterns from learned-patterns.md when generating code!
 ```
 
 ## Identity

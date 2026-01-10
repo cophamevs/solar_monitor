@@ -59,6 +59,8 @@ If user writes in Thai, respond in Thai.
 | `/toh-fix` | `/toh-f`, `toh fix`, `toh f` | Fix bugs |
 | `/toh-ship` | `/toh-s`, `toh ship`, `toh s` | Deploy to production |
 | `/toh-protect` | `/toh-pr`, `toh protect`, `toh pr` | Security audit |
+| `/toh-learn` | `/toh-ln`, `toh learn`, `toh ln` | Self-learn from codebase |
+| `/toh-hive` | `/toh-h`, `toh hive` | Multi-Agent Orchestration |
 
 ### ⚡ Execution Rules:
 
@@ -87,6 +89,8 @@ When user types ONLY the command (no description), respond with a friendly promp
 | `/toh-line` | "I'm the **LINE Agent** 💚 - I integrate LINE Mini App features. What LINE feature do you need?" |
 | `/toh-mobile` | "I'm the **Mobile Agent** 📱 - I create Expo/React Native apps. What mobile feature should I build?" |
 | `/toh-ship` | "I'm the **Ship Agent** 🚀 - I deploy to production. Where should I deploy?" |
+| `/toh-learn` | "I'm the **Learn Agent** 🎓 - I analyze codebase to learn patterns. What should I learn from?" |
+| `/toh-hive` | "I'm the **Orchestrator** 🐝 - I manage the Hive Mind. What complex system shall we build?" |
 | `/toh-help` | (Always show help immediately - no description needed) |
 
 ### Examples:
@@ -202,6 +206,8 @@ All Toh Framework resources are in the `.toh/` folder (Central Resources):
 | `/toh-line` | `platform-specialist`, `integrations` | `platform-adapter.md` |
 | `/toh-mobile` | `platform-specialist`, `ui-first-builder` | `platform-adapter.md` |
 | `/toh-ship` | `version-control`, `progress-tracking` | `plan-orchestrator.md` |
+| `/toh-learn` | `learn-skill`, `memory-system` | (uses learn workflow) |
+| `/toh-hive` | `plan-orchestrator`, `smart-routing` | `orchestrator.md` |
 
 ### Core Skills (Always Available)
 - `memory-system` - Memory read/write protocol

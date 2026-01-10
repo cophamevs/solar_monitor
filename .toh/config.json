@@ -1,0 +1,34 @@
+{
+    "models": {
+        "opus": "claude-3-opus-latest",
+        "gemini_pro": "gemini-1.5-pro-latest",
+        "gemini_flash": "gemini-1.5-flash-latest"
+    },
+    "agents": {
+        "plan-orchestrator": {
+            "model": "opus",
+            "tokens": "16k",
+            "description": "Planning & Orchestration (Claude Opus)"
+        },
+        "dev-builder": {
+            "model": "opus",
+            "tokens": "16k",
+            "description": "Development & Logic (Claude Opus)"
+        },
+        "ui-builder": {
+            "model": "opus",
+            "tokens": "16k",
+            "description": "UI Implementation (Claude Opus)"
+        },
+        "learn-agent": {
+            "model": "gemini_pro",
+            "tokens": "2M",
+            "description": "Context & Learning (Gemini Pro)"
+        },
+        "test-runner": {
+            "model": "gemini_flash",
+            "tokens": "32k",
+            "description": "Testing & Quick Fixes (Gemini Flash)"
+        }
+    }
+}

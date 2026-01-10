@@ -6,6 +6,10 @@ description: >
   immediately from any description. Self-sufficient: reads requirements, builds UI,
   verifies quality, fixes issues - all autonomously. No handholding needed.
   Now with PREMIUM MODE: multi-page, animations, zero errors.
+model_config:
+  provider: anthropic
+  model: claude-3-opus-latest
+  temperature: 0.7
 skills:
   - ui-first-builder            # Core UI building
   - design-excellence           # Design principles
