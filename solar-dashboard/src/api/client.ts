@@ -54,7 +54,7 @@ class ApiClient {
 
     // Auth
     async login(username: string, password: string) {
-        const data = await this.request<{ token: string; user: User }>('/api/auth/login', {
+        const data = await this.request<{ token: string; user: User }>('/auth/login', {
             method: 'POST',
             body: JSON.stringify({ username, password }),
         });
@@ -67,33 +67,33 @@ class ApiClient {
     }
 
     async getMe() {
-        return this.request<User>('/api/auth/me');
+        return this.request<User>('/auth/me');
     }
 
     // Dashboard
     async getDashboardSummary() {
-        return this.request<DashboardSummary>('/api/dashboard/summary');
+        return this.request<DashboardSummary>('/dashboard/summary');
     }
 
     async getPlantStatus() {
-        return this.request<PlantStatusCounts>('/api/dashboard/plant-status');
+        return this.request<PlantStatusCounts>('/dashboard/plant-status');
     }
 
     async getAlarmSummary() {
-        return this.request<AlarmSummaryCounts>('/api/dashboard/alarm-summary');
+        return this.request<AlarmSummaryCounts>('/dashboard/alarm-summary');
     }
 
     // Sites
     async getSites() {
-        return this.request<Site[]>('/api/sites');
+        return this.request<Site[]>('/sites');
     }
 
     async getSite(id: string) {
-        return this.request<Site>(`/api/sites/${id}`);
+        return this.request<Site>(`/sites/${id}`);
     }
 
     async getSiteDevices(siteId: string) {
-        return this.request<Device[]>(`/api/sites/${siteId}/devices`);
+        return this.request<Device[]>(`/sites/${siteId}/devices`);
     }
 
     // Devices
@@ -104,11 +104,11 @@ class ApiClient {
         if (params?.status) searchParams.set('status', params.status);
 
         const query = searchParams.toString();
-        return this.request<Device[]>(`/api/devices${query ? `?${query}` : ''}`);
+        return this.request<Device[]>(`/devices${query ? `?${query}` : ''}`);
     }
 
     async getDevice(id: string) {
-        return this.request<Device>(`/api/devices/${id}`);
+        return this.request<Device>(`/devices/${id}`);
     }
 
     async getDeviceTelemetry(id: string, params?: { start_date?: string; end_date?: string; parameters?: string; interval?: string }) {
@@ -119,11 +119,11 @@ class ApiClient {
         if (params?.interval) searchParams.set('interval', params.interval);
 
         const query = searchParams.toString();
-        return this.request<TelemetryResponse>(`/api/devices/${id}/telemetry${query ? `?${query}` : ''}`);
+        return this.request<TelemetryResponse>(`/devices/${id}/telemetry${query ? `?${query}` : ''}`);
     }
 
     async getDeviceRealtime(id: string) {
-        return this.request<RealtimeResponse>(`/api/devices/${id}/realtime`);
+        return this.request<RealtimeResponse>(`/devices/${id}/realtime`);
     }
 
     // Alerts
@@ -135,15 +135,15 @@ class ApiClient {
         if (params?.limit) searchParams.set('limit', String(params.limit));
 
         const query = searchParams.toString();
-        return this.request<AlertsResponse>(`/api/alerts${query ? `?${query}` : ''}`);
+        return this.request<AlertsResponse>(`/alerts${query ? `?${query}` : ''}`);
     }
 
     async acknowledgeAlert(id: string) {
-        return this.request<Alert>(`/api/alerts/${id}/acknowledge`, { method: 'PUT' });
+        return this.request<Alert>(`/alerts/${id}/acknowledge`, { method: 'PUT' });
     }
 
     async resolveAlert(id: string, comment?: string) {
-        return this.request<Alert>(`/api/alerts/${id}/resolve`, {
+        return this.request<Alert>(`/alerts/${id}/resolve`, {
             method: 'PUT',
             body: JSON.stringify({ comment }),
         });
@@ -155,12 +155,12 @@ class ApiClient {
         if (date) searchParams.set('date', date);
 
         const query = searchParams.toString();
-        return this.request<AnalyticsCompareResponse>(`/api/analytics/compare?${query}`);
+        return this.request<AnalyticsCompareResponse>(`/analytics/compare?${query}`);
     }
 
     // Energy Flow (for EnergyFlowDiagram)
     async getEnergyFlow(siteId: string) {
-        return this.request<EnergyFlowData>(`/api/dashboard/energy-flow/${siteId}`);
+        return this.request<EnergyFlowData>(`/dashboard/energy-flow/${siteId}`);
     }
 }
 
