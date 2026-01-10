@@ -137,7 +137,7 @@ export function AddDeviceModal({ isOpen, onClose, onSuccess, sites }: AddDeviceM
 
         try {
             const response = await fetch(
-                `${import.meta.env.VITE_API_URL || "http://localhost:3000/api"}/devices`,
+                `${import.meta.env.VITE_API_URL || "/api"}/devices`,
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },

@@ -81,7 +81,7 @@ export function DeviceDetail({ deviceId, onBack }: DeviceDetailProps) {
         try {
             const token = localStorage.getItem('auth_token');
             const response = await fetch(
-                `${import.meta.env.VITE_API_URL || "http://localhost:3000/api"}/devices/${deviceId}`,
+                `${import.meta.env.VITE_API_URL || "/api"}/devices/${deviceId}`,
                 {
                     method: "PUT",
                     headers: {

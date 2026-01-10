@@ -81,7 +81,7 @@ export function Alarms() {
         try {
             const token = localStorage.getItem('auth_token');
             const response = await fetch(
-                `${import.meta.env.VITE_API_URL || "http://localhost:3000/api"}/alerts/${commentModal.alertId}/comment`,
+                `${import.meta.env.VITE_API_URL || "/api"}/alerts/${commentModal.alertId}/comment`,
                 {
                     method: "PUT",
                     headers: {

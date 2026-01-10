@@ -24,7 +24,7 @@ export function DeviceList({ onSelectDevice }: DeviceListProps) {
     );
 
     const { data: sites } = useApi<{ id: string; name: string }[]>(
-        () => fetch(`${import.meta.env.VITE_API_URL || "http://localhost:3000/api"}/sites`)
+        () => fetch(`${import.meta.env.VITE_API_URL || "/api"}/sites`)
             .then(res => res.json())
             .then(data => data.map((s: any) => ({ id: s.id, name: s.name }))),
         []

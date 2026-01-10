@@ -4,7 +4,7 @@ import { useStore } from '../store/useStore';
 
 let socket: Socket | null = null;
 
-const SOCKET_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+const SOCKET_URL = import.meta.env.VITE_API_URL || '';
 
 export const useSocket = () => {
     const { setSocketStatus } = useStore();
