@@ -41,11 +41,11 @@ cd /home/pi/projects/solar_monitor
 # Login to GitHub Container Registry (first time only)
 echo $GITHUB_TOKEN | docker login ghcr.io -u YOUR_USERNAME --password-stdin
 
-# Build frontend image
-docker build -t ghcr.io/cophamevs/solar_monitor/frontend:latest ./solar-dashboard
+# Build frontend image (Specify ARM64 for Orange Pi)
+docker build --platform linux/arm64 -t ghcr.io/cophamevs/solar_monitor/frontend:latest ./solar-dashboard
 
 # Build backend image (if backend changed)
-docker build -t ghcr.io/cophamevs/solar_monitor/backend:latest ./solar-backend
+docker build --platform linux/arm64 -t ghcr.io/cophamevs/solar_monitor/backend:latest ./solar-backend
 
 # Push images
 docker push ghcr.io/cophamevs/solar_monitor/frontend:latest
