@@ -3,6 +3,12 @@ name: Build and Push Docker Images
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.agent/**'
+      - 'LICENSE'
+      - '.gitignore'
   workflow_dispatch:
 
 env:
