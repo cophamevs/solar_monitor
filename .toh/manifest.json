@@ -1,0 +1,17 @@
+{
+  "version": "1.7.0",
+  "installedAt": "2026-01-09T10:10:59.793Z",
+  "targetDir": "/home/pi/projects/solar_monitor",
+  "ides": [
+    "claude",
+    "cursor",
+    "gemini"
+  ],
+  "components": {
+    "skills": true,
+    "agents": true,
+    "commands": true,
+    "templates": false,
+    "memory": true
+  }
+}

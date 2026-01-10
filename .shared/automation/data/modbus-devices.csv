@@ -1,0 +1,46 @@
+Manufacturer,Model,Protocol,Port,UnitID,Keywords,Parameter,Register,DataType,Scale,Unit,Notes
+Solis,RHI-3K-48ES-5G,MODBUS_TCP,502,1,solis rhi hybrid inverter solar,power,3004,INT16,0.1,kW,AC output power
+Solis,RHI-3K-48ES-5G,MODBUS_TCP,502,1,solis rhi hybrid inverter solar,daily_yield,3014,UINT32,0.1,kWh,Daily energy generation
+Solis,RHI-3K-48ES-5G,MODBUS_TCP,502,1,solis rhi hybrid inverter solar,total_yield,3008,UINT32,0.1,kWh,Total energy generation
+Solis,RHI-3K-48ES-5G,MODBUS_TCP,502,1,solis rhi hybrid inverter solar,voltage_dc1,3021,INT16,0.1,V,PV1 voltage
+Solis,RHI-3K-48ES-5G,MODBUS_TCP,502,1,solis rhi hybrid inverter solar,current_dc1,3022,INT16,0.1,A,PV1 current
+Solis,RHI-3K-48ES-5G,MODBUS_TCP,502,1,solis rhi hybrid inverter solar,voltage_dc2,3023,INT16,0.1,V,PV2 voltage
+Solis,RHI-3K-48ES-5G,MODBUS_TCP,502,1,solis rhi hybrid inverter solar,current_dc2,3024,INT16,0.1,A,PV2 current
+Solis,RHI-3K-48ES-5G,MODBUS_TCP,502,1,solis rhi hybrid inverter solar,grid_voltage,3035,INT16,0.1,V,Grid voltage
+Solis,RHI-3K-48ES-5G,MODBUS_TCP,502,1,solis rhi hybrid inverter solar,grid_frequency,3042,INT16,0.01,Hz,Grid frequency
+Solis,RHI-3K-48ES-5G,MODBUS_TCP,502,1,solis rhi hybrid inverter solar,battery_voltage,3261,INT16,0.1,V,Battery voltage
+Solis,RHI-3K-48ES-5G,MODBUS_TCP,502,1,solis rhi hybrid inverter solar,battery_current,3262,INT16,0.1,A,Battery current (+ charge)
+Solis,RHI-3K-48ES-5G,MODBUS_TCP,502,1,solis rhi hybrid inverter solar,battery_soc,3263,INT16,1,%,State of charge
+Solis,RHI-3K-48ES-5G,MODBUS_TCP,502,1,solis rhi hybrid inverter solar,battery_power,3264,INT16,0.01,kW,Battery power (+ charge)
+Solis,RHI-3K-48ES-5G,MODBUS_TCP,502,1,solis rhi hybrid inverter solar,inverter_temp,3041,INT16,0.1,°C,Inverter temperature
+Huawei,SUN2000-5KTL-M1,MODBUS_TCP,502,1,huawei sun2000 inverter solar,power,32080,INT32,1,W,Active power
+Huawei,SUN2000-5KTL-M1,MODBUS_TCP,502,1,huawei sun2000 inverter solar,daily_yield,32114,UINT32,10,Wh,Daily yield
+Huawei,SUN2000-5KTL-M1,MODBUS_TCP,502,1,huawei sun2000 inverter solar,total_yield,32106,UINT32,10,Wh,Accumulated yield
+Huawei,SUN2000-5KTL-M1,MODBUS_TCP,502,1,huawei sun2000 inverter solar,voltage_mppt1,32016,INT16,10,V,MPPT1 voltage
+Huawei,SUN2000-5KTL-M1,MODBUS_TCP,502,1,huawei sun2000 inverter solar,current_mppt1,32017,INT16,100,A,MPPT1 current
+Huawei,SUN2000-5KTL-M1,MODBUS_TCP,502,1,huawei sun2000 inverter solar,grid_voltage_a,32069,UINT16,10,V,Phase A voltage
+Huawei,SUN2000-5KTL-M1,MODBUS_TCP,502,1,huawei sun2000 inverter solar,inverter_temp,32087,INT16,10,°C,Temperature
+SMA,Sunny Boy 5.0,MODBUS_TCP,502,3,sma sunny boy inverter solar,power,30775,INT32,1,W,Total active power
+SMA,Sunny Boy 5.0,MODBUS_TCP,502,3,sma sunny boy inverter solar,daily_yield,30535,UINT64,1,Wh,Daily yield
+SMA,Sunny Boy 5.0,MODBUS_TCP,502,3,sma sunny boy inverter solar,total_yield,30529,UINT64,1,Wh,Total yield
+SMA,Sunny Boy 5.0,MODBUS_TCP,502,3,sma sunny boy inverter solar,dc_voltage,30771,INT32,100,V,DC voltage
+SMA,Sunny Boy 5.0,MODBUS_TCP,502,3,sma sunny boy inverter solar,dc_current,30769,INT32,1000,A,DC current
+SMA,Sunny Boy 5.0,MODBUS_TCP,502,3,sma sunny boy inverter solar,grid_frequency,30803,UINT32,100,Hz,Grid frequency
+Growatt,SPH5000,MODBUS_TCP,502,1,growatt sph hybrid inverter solar,power,3,UINT16,0.1,W,Output power
+Growatt,SPH5000,MODBUS_TCP,502,1,growatt sph hybrid inverter solar,daily_yield,53,UINT32,0.1,kWh,Today energy
+Growatt,SPH5000,MODBUS_TCP,502,1,growatt sph hybrid inverter solar,total_yield,55,UINT32,0.1,kWh,Total energy
+Growatt,SPH5000,MODBUS_TCP,502,1,growatt sph hybrid inverter solar,pv1_voltage,1,UINT16,0.1,V,PV1 voltage
+Growatt,SPH5000,MODBUS_TCP,502,1,growatt sph hybrid inverter solar,pv1_current,2,UINT16,0.1,A,PV1 current
+Growatt,SPH5000,MODBUS_TCP,502,1,growatt sph hybrid inverter solar,battery_soc,1014,UINT16,1,%,Battery SOC
+Growatt,SPH5000,MODBUS_TCP,502,1,growatt sph hybrid inverter solar,battery_power,1009,INT16,0.1,W,Battery power
+Generic,SDM630,MODBUS_RTU,9600,1,sdm630 meter energy modbus rtu,voltage_l1,0,FLOAT32,1,V,Phase 1 voltage
+Generic,SDM630,MODBUS_RTU,9600,1,sdm630 meter energy modbus rtu,voltage_l2,2,FLOAT32,1,V,Phase 2 voltage
+Generic,SDM630,MODBUS_RTU,9600,1,sdm630 meter energy modbus rtu,voltage_l3,4,FLOAT32,1,V,Phase 3 voltage
+Generic,SDM630,MODBUS_RTU,9600,1,sdm630 meter energy modbus rtu,current_l1,6,FLOAT32,1,A,Phase 1 current
+Generic,SDM630,MODBUS_RTU,9600,1,sdm630 meter energy modbus rtu,active_power,52,FLOAT32,1,W,Total active power
+Generic,SDM630,MODBUS_RTU,9600,1,sdm630 meter energy modbus rtu,import_kwh,72,FLOAT32,1,kWh,Import energy
+Generic,SDM630,MODBUS_RTU,9600,1,sdm630 meter energy modbus rtu,export_kwh,74,FLOAT32,1,kWh,Export energy
+Generic,SDM120,MODBUS_RTU,9600,1,sdm120 meter energy single phase,voltage,0,FLOAT32,1,V,Voltage
+Generic,SDM120,MODBUS_RTU,9600,1,sdm120 meter energy single phase,current,6,FLOAT32,1,A,Current
+Generic,SDM120,MODBUS_RTU,9600,1,sdm120 meter energy single phase,power,12,FLOAT32,1,W,Active power
+Generic,SDM120,MODBUS_RTU,9600,1,sdm120 meter energy single phase,import_kwh,72,FLOAT32,1,kWh,Import energy

@@ -1,0 +1,10 @@
+Protocol,Keywords,UseCase,DefaultPort,Settings,Example
+MODBUS_TCP,modbus tcp ethernet inverter meter plc,Solar inverters energy meters industrial PLCs over Ethernet,502,IP + Port 502 + Unit ID 1-247,python -c "from pymodbus.client import ModbusTcpClient; c=ModbusTcpClient('192.168.1.100'); c.connect(); print(c.read_holding_registers(0,10,1))"
+MODBUS_RTU,modbus rtu serial rs485 rs232,Serial devices over RS485/RS232 without network,/dev/ttyUSB0,Baud 9600 + 8N1 + Slave ID 1-247,python -c "from pymodbus.client import ModbusSerialClient; c=ModbusSerialClient('/dev/ttyUSB0',baudrate=9600); c.connect()"
+IEC60870-5-104,iec104 iec 60870 scada grid utility,Grid/Utility SCADA systems for remote monitoring,2404,IP + Port 2404 + Common Address + IOA,Uses ASDU types for different data (M_SP_NA=1 single point M_ME_NA=9 measured)
+BACNET_IP,bacnet ip hvac building automation,HVAC and Building Automation Systems,47808,IP + Port 47808 + Device Instance + Object ID,bacpypes library for Python implementation
+BACNET_MSTP,bacnet mstp serial building automation,Serial BACnet for older building systems,/dev/ttyUSB0,MAC address + Baud 38400/76800,Requires RS485 adapter with proper termination
+MELSEC,melsec mc mitsubishi plc,Mitsubishi PLCs and factory automation,5000,IP + Port 5000 + Station + Network + PC,Uses MC Protocol binary or ASCII format
+OPC_UA,opc ua opcua modern industrial,Modern industrial systems with security,4840,Endpoint URL + Security Policy + User/Pass,opcua-asyncio library for Python
+DNP3,dnp3 utility scada outstation,Utility and SCADA systems in North America,20000,Master Address + Outstation Address,pydnp3 library for implementation
+MQTT,mqtt iot telemetry publish subscribe,IoT devices and telemetry data collection,1883,Broker IP + Port 1883 + Topic + QoS,paho-mqtt library for Python

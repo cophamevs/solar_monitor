@@ -1,0 +1,16 @@
+Issue,Symptom,Protocol,Keywords,Cause,Solution,Command
+No Response,Device not responding timeout,MODBUS_TCP,timeout no response modbus tcp,Wrong IP address or device offline,Ping device first then check port 502 is open,ping 192.168.1.100 && nc -zv 192.168.1.100 502
+Connection Refused,Connection refused error,MODBUS_TCP,refused connection modbus,Port not open or firewall blocking,Check firewall rules and Modbus TCP enabled on device,sudo iptables -L -n | grep 502
+CRC Error,CRC mismatch or checksum error,MODBUS_RTU,crc error checksum rtu,Wrong baud rate parity or stop bits,Match serial settings exactly with device manual,stty -F /dev/ttyUSB0 speed
+Illegal Address,Illegal data address exception,MODBUS,register address illegal modbus,Register address does not exist on device,Check device manual for valid register range. Note 0-based vs 1-based addressing,Modbus exception code 02 means invalid address
+Illegal Value,Illegal data value exception,MODBUS,value illegal write modbus,Value out of valid range for register,Check min/max values in device documentation,Modbus exception code 03 means invalid value
+Wrong Values,Values are incorrect or nonsense,MODBUS,wrong value scale modbus,Wrong data type or scaling factor,Verify INT16/UINT16/INT32/FLOAT32 and apply correct scale factor,Check if register is 16-bit or 32-bit
+Timeout Intermittent,Random timeouts during communication,MODBUS_RTU,intermittent timeout rtu,Poor wiring or EMI interference,Check cable shielding and termination resistors,Use 120 ohm termination at both ends of RS485
+Permission Denied,Unable to open serial port,MODBUS_RTU,permission denied serial tty,User not in dialout group,Add user to dialout group,sudo usermod -aG dialout $USER && logout
+Device Busy,Device gateway target failed,MODBUS_TCP,gateway busy device failed,Gateway cannot reach target device,Check gateway-to-device connection and slave ID,Modbus exception code 0A or 0B
+Endian Wrong,Values look swapped or wrong,MODBUS,endian byte order swap modbus,Big endian vs little endian mismatch,Try swapping byte order (word swap and/or byte swap),Some devices use ABCD others use CDAB or BADC
+TLS Handshake,SSL/TLS handshake failed,MQTT,tls ssl handshake mqtt,Certificate mismatch or expired,Verify certificates match between client and broker,openssl s_client -connect broker:8883
+Authentication,Authentication failed 401,MQTT,auth authentication mqtt,Wrong username or password,Check credentials in configuration,mosquitto_pub -u user -P pass -h broker -t test -m test
+Topic Not Found,No messages received,MQTT,topic subscribe mqtt,Wrong topic name or no publishers,Verify exact topic string including wildcards,mosquitto_sub -h broker -t 'solar/#' -v
+IOA Mismatch,IEC104 data not appearing,IEC60870-5-104,ioa address iec104,Information Object Address mismatch,Check IOA mapping in RTU configuration,IOAs are 3 bytes typically starting from 1
+ASDU Unknown,Unknown type identification,IEC60870-5-104,asdu type iec104,Unsupported ASDU type received,Check if type is handled in your implementation,Common types: 1 30 (SP) 9 10 (ME) 45 46 (SC)
