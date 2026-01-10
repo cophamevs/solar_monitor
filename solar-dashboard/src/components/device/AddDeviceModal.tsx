@@ -72,6 +72,16 @@ export function AddDeviceModal({ isOpen, onClose, onSuccess, sites }: AddDeviceM
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState<string | null>(null);
 
+    // Update siteId when sites prop changes (async loading)
+    React.useEffect(() => {
+        if (sites.length > 0 && !formData.siteId) {
+            setFormData(prev => ({
+                ...prev,
+                siteId: sites[0].id,
+            }));
+        }
+    }, [sites]);
+
     // Update port when protocol changes
     React.useEffect(() => {
         setFormData(prev => ({
@@ -223,8 +233,8 @@ export function AddDeviceModal({ isOpen, onClose, onSuccess, sites }: AddDeviceM
                                     type="button"
                                     onClick={() => setFormData(prev => ({ ...prev, protocol: p }))}
                                     className={`px-2 py-2 text-xs font-medium rounded-lg border transition-colors ${formData.protocol === p
-                                            ? "bg-primary text-white border-primary"
-                                            : "bg-white text-text-sub border-gray-200 hover:border-primary"
+                                        ? "bg-primary text-white border-primary"
+                                        : "bg-white text-text-sub border-gray-200 hover:border-primary"
                                         }`}
                                 >
                                     {p.replace("_", " ")}
