@@ -5,6 +5,7 @@ services:
   postgres:
     image: timescale/timescaledb:latest-pg15
     container_name: solar_postgres
+    command: postgres -c shared_buffers=128MB -c max_connections=50 -c work_mem=4MB
     environment:
       POSTGRES_DB: solar_monitor
       POSTGRES_USER: solar
@@ -18,6 +19,10 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    deploy:
+      resources:
+        limits:
+          memory: 384M
     restart: unless-stopped
 
   # MQTT Broker
@@ -31,6 +36,10 @@ services:
     ports:
       - "1883:1883"
       - "9001:9001"
+    deploy:
+      resources:
+        limits:
+          memory: 64M
     restart: unless-stopped
 
   # Backend API (pre-built image for ARM64)
@@ -39,6 +48,7 @@ services:
     container_name: solar_backend
     environment:
       NODE_ENV: production
+      NODE_OPTIONS: "--max-old-space-size=200"
       DATABASE_URL: postgresql://solar:${DB_PASSWORD:-solarmonitor2024}@postgres:5432/solar_monitor
       MQTT_BROKER_URL: mqtt://mosquitto:1883
       JWT_SECRET: ${JWT_SECRET:-solar-jwt-secret-key-2024-change-in-production}
@@ -50,6 +60,15 @@ services:
         condition: service_healthy
       mosquitto:
         condition: service_started
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+    healthcheck:
+      test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
     restart: unless-stopped
 
   # Frontend (pre-built image for ARM64)
@@ -60,6 +79,10 @@ services:
       - "80:80"
     depends_on:
       - backend
+    deploy:
+      resources:
+        limits:
+          memory: 64M
     restart: unless-stopped
 
 volumes:
