@@ -20,7 +20,7 @@ const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
     cors: {
-        origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+        origin: '*', // Allow connections from any IP (required for local network access)
         methods: ['GET', 'POST']
     }
 });

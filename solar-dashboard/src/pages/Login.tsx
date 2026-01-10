@@ -1,5 +1,6 @@
 import React from "react";
 import { Icon } from "../components/base/Icon";
+import { api } from "../api/client";
 
 interface LoginProps {
     onLoginSuccess: () => void;
@@ -17,24 +18,14 @@ export function Login({ onLoginSuccess }: LoginProps) {
         setLoading(true);
 
         try {
-            const response = await fetch(
-                `${import.meta.env.VITE_API_URL || "http://localhost:3000/api"}/auth/login`,
-                {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ username, password }),
-                }
-            );
+            // Use the centralized API client
+            // This ensures we use the correct base URL (relative in prod, localhost in dev)
+            await api.login(username, password);
+            // Token is already set in api.login()
 
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.message || "Login failed");
-            }
-
-            localStorage.setItem("token", data.token);
             onLoginSuccess();
         } catch (err) {
+            console.error("Login error:", err);
             setError(err instanceof Error ? err.message : "Login failed");
         } finally {
             setLoading(false);
