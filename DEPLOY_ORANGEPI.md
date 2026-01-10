@@ -13,18 +13,30 @@ This guide covers how to deploy the Solar Monitor to an Orange Pi R1 Plus (or si
 
 Devices with 1GB RAM **will crash** without swap space when running the full stack (TimescaleDB, Backend, Frontend, MQTT). We recommend creating a 1GB swap file.
 
-Run these commands on your Orange Pi:
+## 1. Setup Swap File (Mandatory)
+
+Devices with 1GB RAM **will crash** without swap space. 
+
+**First, check if you already have swap:**
+```bash
+sudo swapon --show
+```
+If you see a list with `/swapfile` or `/dev/zram` and Total size > 1G, **you are good to go! Skip to Step 2.**
+
+---
+
+**ONLY run these commands if the output above was empty:**
 
 ```bash
-# Check existing swap
-sudo swapon --show
-
 # Create 1GB swap file
 sudo fallocate -l 1G /swapfile
 sudo chmod 600 /swapfile
 sudo mkswap /swapfile
 sudo swapon /swapfile
 
+# Make it permanent
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+```
 # Make it permanent
 echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 
